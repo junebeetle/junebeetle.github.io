@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+	<head>
+		<title>junebeetle</title>
+		<link rel="stylesheet" href="/style.css">
+		<meta charset="UTF-8">
+	</head>
+	<body>
+		<div class="commonDiv">
+			<iframe src="/common.html" class="commonFrame"></iframe>
+		</div>
+		<div>
+			<h1>"Create Projector" Workaround</h1>
+			<center><img src="/projector/screenshot.png"></center>
+			<h2>Background</h2>
+			<p>In Flash Player 11.3, Adobe disabled the <b>Create Projector</b> option in standalone Flash Players, a useful feature that allowed exporting SWFs as native apps for your platform. Despite <a href="https://superuser.com/questions/791964/file-create-projector-is-greyed-out-in-adobe-windows-flash-player-projector">some</a> <a href="https://forums.adobe.com/thread/2154850">threads</a> on the topic and also <a href="https://tracker.adobe.com/#/view/FP-3564435">several</a> <a href="https://tracker.adobe.com/#/view/FP-4006587">reports</a> on Adobe's bug tracker, no workarounds have been published. The accepted solution has just been to use Flash Player 11. To me, that is ridiculous; it's from 2012. So I found a workaround.</p>
+			<br>
+			<h2>Finding a Solution</h2>
+			<p>First of all, I confirmed that it is impossible to re-enable the menu option. Disassembly of the program shows that the supporting functions have all been removed. However, by analyzing projectors created in version 11.2, I was able to reverse-engineer the process on both macOS and Windows. The steps are as follows, and still work with the latest Flash Player.</p>
+			<br>
+			<h2>Manual Steps</h2>
+			<br>
+			<h3>macOS</h3>
+			<p>On macOS, an app is actually a just folder. Copy the standalone Flash Player and put the SWF file in:</p>
+			<pre>Flash Player.app/Contents/Resources/movie.swf</pre>
+			<p>This is sufficient to create a working projector app.</p>
+			<br>
+			<h3>Windows</h3>
+			<p>Adobe used a weirder method on Windows, since an EXE is a single file. The steps are as follows:
+			<br>• Make a copy of the standalone Flash Player executable
+			<br>• Directly append the SWF file to the EXE
+			<br>• Append these 4 bytes (whose meaning I can't decipher, but they seem constant):</p>
+			<pre>0x56 0x34 0x12 0xFA</pre>
+			<p>• Append the size of the SWF as a big-endian integer, padded to 4 bytes with trailing zeros
+			<br>This produces a working projector executable for Windows.</p>
+			<br>
+			<h2>Automation</h2>
+			<p>Of course, manually following these steps is impractical. So I wrote some simple tools to automate the process. For macOS, a simple <a href="https://en.wikipedia.org/wiki/AppleScript">applet</a> copies the files. For Windows, a 150-line Flash program was the easiest way to assemble the EXE.
+			<br>
+			<br>These tools are not thoroughly tested, so no guarantees. Please <a href="/contact">tell me</a> if you encounter any problems.</p>
+			<a class="button" href="/projector/Projector%20Tools.zip">Download Tools</a>
+			<br><a class="button" href="/projector/Projector%20Tools%20Source.zip">Download Source Code</a>
+			<br>
+			<br>
+			<h2>How-To</h2>
+			<p>As can be seen below, the tools themselves are very self-explanatory. Just select a copy of the correct Flash Player, select the SWF, and save the projector application. Each step may take several seconds.</p>
+			<center><img src="/projector/toolsWindows.png"> <img src="/projector/toolsMac.png"></center>
+			<br>
+			<p>To download the Flash Player application, simply navigate to <a href="https://www.adobe.com/support/flashplayer/debug_downloads.html">this</a> link (or press the button in either tool). Scroll down until you find the "projector" version for your operating system (see the screenshots below).</p>
+			<center><img src="/projector/downloadWindows.png"></center>
+			<center><img src="/projector/downloadMac.png"></center>
+			<br>
+			<p>Everything else <i>should</i> be straightforward. Again, please don't hesitate to <a href="/contact">tell me</a> if anything is not working.</p>
+		</div>
+	</body>
+</html>

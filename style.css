@@ -1,0 +1,174 @@
+/*
+
+Fonts:
+https://fonts.google.com/?query=roboto&selection.family=Roboto+Mono|Roboto:300,300i,700,700i
+
+Inspiration:
+http://web.archive.org/web/20170630210554/http://c-obrien.org:80/qemu-os9/
+https://xkcd.com
+my previous website
+
+*/
+
+@import url('https://fonts.googleapis.com/css?family=Roboto+Mono|Roboto:300,300i,700,700i');
+
+body
+{
+	margin:0px;
+	padding:0px;
+	font-size:17px;
+	font-family:"Roboto",sans-serif;
+	background:url("/background.png");
+	background-size:cover;
+	background-attachment:fixed;
+	font-weight:lighter;
+	color:rgba(255,255,255,0.6);
+}
+div
+{
+	margin-top:0px;
+	margin-left:auto;
+	margin-right:auto;
+	margin-bottom:20px;
+	padding:15px;
+	width:800px;
+	background-color:rgba(255,255,255,0.1);
+	border-radius:15px;
+}
+p
+{
+	margin:0px;
+	line-height:1.4em;
+}
+a
+{
+	margin:0px;
+	padding-top:0px;
+	padding-left:3px;
+	padding-right:3px;
+	padding-bottom:0px;
+	border-radius:4px;
+	color:rgba(255,255,255,0.7);
+	text-decoration:none;
+	white-space:nowrap;
+	background-color:rgba(255,255,255,0.2);
+}
+a:hover
+{
+	background-color:rgba(255,255,255,0.4);
+}
+a.button
+{
+	padding-top:0px;
+	padding-left:8px;
+	padding-right:8px;
+	padding-bottom:0px;
+	font-size:30px;
+	line-height:1.2em;
+	color:rgba(255,255,255,0.8);
+	display:inline-block;
+	margin-top:4px;
+	margin-left:0px;
+	margin-right:0px;
+	margin-bottom:4px;
+}
+h1
+{
+	margin:0px;
+	font-weight:bold;
+	font-size:50px;
+	text-align:center;
+	color:rgba(255,255,255,0.8);
+}
+h2
+{
+	margin:0px;
+	font-weight:bold;
+	font-size:35px;
+	text-align:center;
+	color:rgba(255,255,255,0.8);
+}
+h3
+{
+	margin:0px;
+	font-weight:bold;
+	font-size:20px;
+	text-align:center;
+	color:rgba(255,255,255,0.8);
+}
+img
+{
+	margin-top:7px;
+	margin-left:0px;
+	margin-right:0px;
+	margin-bottom:7px;
+}
+img.thumbnail
+{
+	width:300px;
+}
+pre
+{
+	margin-top:7px;
+	margin-left:0px;
+	margin-right:0px;
+	margin-bottom:7px;
+	padding:5px;
+	overflow:auto;
+	font-family:"Roboto Mono",monospace;
+	background-color:rgba(255,255,255,0.1);
+}
+
+iframe.commonFrame
+{
+	border:0px;
+	width:100%;
+	height:100px;
+}
+body.commonBody
+{
+	background:transparent;
+	margin:0px;
+	overflow:hidden;
+}
+div.commonDiv
+{
+	background:transparent;
+	margin-bottom:0px;
+}
+a.commonTitle
+{
+	font-weight:bold;
+	font-size:80px;
+	color:#4FA625;
+	background-color:transparent;
+}
+a.commonTitle:hover
+{
+	text-shadow:0px 0px 15px #4FA625;
+}
+a.commonLink
+{
+	font-size:20px;
+	color:rgba(255,255,255,0.5);
+	background-color:rgba(255,255,255,0.1);
+	line-height:1.4em;
+}
+a.commonLink:hover
+{
+	background-color:rgba(255,255,255,0.3);
+}
+table.commonTable
+{
+	width:100%;
+}
+td.commonTitleCell
+{
+	width:100%;
+	vertical-align:bottom;
+}
+td.commonNavigationCell
+{
+	text-align:right;
+	vertical-align:bottom;
+}
