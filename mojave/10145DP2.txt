@@ -1,0 +1,79 @@
+PREREQUISITES
+Packages folder from 10.14.4 InstallESD
+macOSUpdCombo10.14.5.pkg
+extracted system files from 10.13.6, 10.14.3, and 10.14.4
+
+INSTALL 10.14.4
+pkgutil --expand OSInstall.mpkg Expanded
+edit Distribution
+SKIP CHECK: "return true;" at the beginning of "installationCheck()"
+ENABLE DISK SELECTION: remove "installsOS=true"
+pkgutil --flatten Expanded Patched.mpkg
+install the patched package to a partition
+
+UPDATE TO BETA
+sudo pkgutil --expand-full macOSUpdCombo10.14.5.pkg Expanded
+sudo cp -a Expanded/Payload/ /Volumes/Mojave
+
+MAKE BOOTABLE
+copy "/usr/standalone/i386/boot.efi" to "/System/Library/CoreServices"
+
+BYPASS PROHIBITORY SIGN, SHOW SYMBOLS IN KP LOGS
+edit "Library/Preferences/SystemConfiguration/com.apple.Boot.plist"
+change "Kernel Flags" to "-v -no_compat_check keepsyms=1"
+
+PENRYN CPU KP FIX
+delete "/S*/L*/UserEventPlugins/com.apple.telemetry.plugin"
+
+--- bundles below from 10.13.6 ---
+
+SOUND
+/S*/L*/E*/AppleHDA.kext
+
+GPU RECOGNITION
+NVDAResmanTesla.kext
+NVDANV50HalTesla.kext
++ NDRVShim or alternative
+
+NDRVSHIM ALTERNATIVE #1
+IONDRVSupport.kext
+IOGraphicsFamily.kext
+*** prevents AppleGraphicsDevicePolicy from loading, no obvious side effects ***
+
+NDRVSHIM ALTERNATIVE #2
+edit NVDAResmanTesla.kext in Hopper
+1ea59a - 1ea5b3 nop
+hex edit VSLGestalt --> IOLockLock (or any other find-able symbol of the same length)
+
+FRAMEBUFFER
+GeForceTesla.kext
+GeForceGA.bundle
+
+TESLA OPENGL KP FIX
+edit GeForceTesla.kext in Hopper
+nvVirtualAddressSpaceTesla::free() + 183 nop
+
+OPENGL
+GeForceTeslaGLDriver.bundle
+GeForceTeslaVADriver.bundle
+
+--- bundles below from 10.14.3 ---
+
+DOSDUDE1'S 10.14.4 WINDOWSERVER CRASH FIX/S*/L*/P*F*/GPUSupport.framework
+/S*/L*/F*/OpenGL.framework
+
+--- bundles below from 10.14.4 ---
+
+10.14.5 WINDOWSERVER CRASH FIX
+/S*/L*/F*/CoreDisplay.framework
+
+REBUILD PRELINKEDKERNEL
+sudo chmod -R 755 /Volumes/Mojave/System/Library/Extensions
+sudo chown -R root:wheel /Volumes/Mojave/System/Library/Extensions
+disable rootless
+reboot into patched system
+sudo kextcache -i /
+
+ARDUINO
+TODO: confirm if still necessary now that USB works OOB
+AppleUSBACM.kext
