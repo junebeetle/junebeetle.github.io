@@ -18,8 +18,8 @@ sudo cp -a Expanded/Payload/ /Volumes/Mojave
 MAKE BOOTABLE
 copy "/usr/standalone/i386/boot.efi" to "/System/Library/CoreServices"
 
-BYPASS PROHIBITORY SIGN, SHOW SYMBOLS IN KP LOGS
-edit "Library/Preferences/SystemConfiguration/com.apple.Boot.plist"
+BYPASS PROHIBITORY SIGN, SHOW DEBUG INFO
+edit "/Library/Preferences/SystemConfiguration/com.apple.Boot.plist"
 change "Kernel Flags" to "-v -no_compat_check keepsyms=1"
 
 PENRYN CPU KP FIX
@@ -57,6 +57,10 @@ OPENGL
 GeForceTeslaGLDriver.bundle
 GeForceTeslaVADriver.bundle
 
+ARDUINO UPLOAD FIX
+TODO: may be unnecessary now that USB works OOB in 10.14.3 (?) +
+AppleUSBACM.kext
+
 --- bundles below from 10.14.3 ---
 
 DOSDUDE1'S 10.14.4 WINDOWSERVER CRASH FIX/S*/L*/P*F*/GPUSupport.framework
@@ -73,7 +77,3 @@ sudo chown -R root:wheel /Volumes/Mojave/System/Library/Extensions
 disable rootless
 reboot into patched system
 sudo kextcache -i /
-
-ARDUINO
-TODO: confirm if still necessary now that USB works OOB
-AppleUSBACM.kext
