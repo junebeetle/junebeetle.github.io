@@ -1,19 +1,14 @@
 PREREQUISITES
-Packages folder from 10.14.4 InstallESD
-macOSUpdCombo10.14.5.pkg
+Packages folder from 10.14.5 InstallESD
 extracted system files from 10.13.6, 10.14.3, and 10.14.4
 
-INSTALL 10.14.4
+INSTALL 10.14.5
 pkgutil --expand OSInstall.mpkg Expanded
 edit Distribution
 SKIP CHECK: "return true;" at the beginning of "installationCheck()"
 ENABLE DISK SELECTION: remove "installsOS=true"
 pkgutil --flatten Expanded Patched.mpkg
-install the patched package to a partition
-
-UPDATE TO BETA
-sudo pkgutil --expand-full macOSUpdCombo10.14.5.pkg Expanded
-sudo cp -a Expanded/Payload/ /Volumes/Mojave
+install the patched package to an HFS+ partition
 
 MAKE BOOTABLE
 copy "/usr/standalone/i386/boot.efi" to "/System/Library/CoreServices"
@@ -33,7 +28,7 @@ SOUND
 GPU RECOGNITION
 NVDAResmanTesla.kext
 NVDANV50HalTesla.kext
-+ NDRVShim or alternative
++ parrotgeek1's NDRVShim or alternative
 
 NDRVSHIM ALTERNATIVE #1
 IONDRVSupport.kext
@@ -77,3 +72,10 @@ sudo chown -R root:wheel /Volumes/Mojave/System/Library/Extensions
 disable rootless
 reboot into patched system
 sudo kextcache -i /
+
+ENABLE SUBPIXEL RENDERING GLOBALLY FOR A USER
+defaults write -g CGFontRenderingFontSmoothingDisabled -bool false
+RE-DISABLE FOR AN APP: defaults write com.app.name CGFontRenderingFontSmoothingDisabled -bool true
+
+IMPROVED MINH_TON'S NEWS FIX
+sudo printf "\n/System/Library/Frameworks/OpenCL.framework" >> /System/iOSSupport/dyld/macOS-whitelist.txt
