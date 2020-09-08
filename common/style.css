@@ -1,0 +1,144 @@
+@font-face
+{
+	font-family:embeddedSans;
+	src:url(/common/robotothin.ttf);
+	font-weight:normal;
+	font-style:normal;
+}
+@font-face
+{
+	font-family:embeddedSans;
+	src:url(/common/robotothinitalic.ttf);
+	font-weight:normal;
+	font-style:italic;
+}
+@font-face
+{
+	font-family:embeddedSans;
+	src:url(/common/robotoregular.ttf);
+	font-weight:bold;
+	font-style:normal;
+}
+@font-face
+{
+	font-family:embeddedMono;
+	src:url(/common/sourcecodeproextralight.ttf);
+	font-weight:normal;
+	font-style:normal;
+}
+
+body
+{
+	margin:0px;
+	font-family:embeddedSans,sans-serif;
+	font-size:18px;
+	line-height:1.4em;
+	color:#808080;
+	background-color:#181818;
+}
+.divInner
+{
+	margin:0px auto 0px auto;
+	padding:0.5em;
+	max-width:700px;
+}
+
+h1,h2,h3
+{
+	margin:0px;
+	line-height:1.4em;
+	font-weight:normal;
+	font-style:italic;
+}
+.mainTitle
+{
+	font-size:2.9em;
+	color:#00AF00;
+	font-style:normal;
+}
+h1
+{
+	font-size:2.5em;
+	color:#207020;
+}
+h2
+{
+	font-size:1.7em;
+	color:#2C602C;
+}
+h3
+{
+	font-size:1.2em;
+	color:#385038;
+}
+
+code,a
+{
+	padding:0px 0.2em 0px 0.2em;
+}
+code
+{
+	display:inline-block;
+	white-space:pre-wrap;
+	word-break:break-all;
+	font-family:embeddedMono,monospace;
+	font-size:0.9em;
+	line-height:1.4em;
+	font-weight:normal;
+	color:#C890C0;
+	background-color:#242022;
+}
+a
+{
+	text-decoration:none;
+	color:#6070F0;
+	background-color:#202127;
+	transition:background-color 0.1s;
+}
+a:hover
+{
+	background-color:#282946;
+}
+
+img
+{
+	max-width:100%;
+}
+
+ul
+{
+	margin:0px;
+	padding:0px 0px 0px 1em;
+	list-style-type:square;
+}
+
+#headerOuter
+{
+	background-color:#202020;
+}
+#headerInner
+{
+	text-align:center;
+}
+#headerInner a
+{
+	padding:0px;
+	color:inherit;
+	background-color:transparent;
+	font-weight:inherit;
+}
+#headerInner a:hover
+{
+	background-color:transparent;
+	text-decoration:underline;
+}
+#headerInner img
+{
+	height:1.5em;
+	vertical-align:middle;
+}
+#headerInner span
+{
+	display:inline-block;
+	white-space:pre;
+}
